@@ -1,5 +1,10 @@
-import { FileSearch, CheckCircle, FileEdit } from 'lucide-react';
 import React from 'react';
+import {
+  FileSearch,
+  CheckCircle,
+  FileEdit,
+  FileText,
+} from 'lucide-react';
 
 export function ReviewProcess() {
   return (
@@ -14,114 +19,92 @@ export function ReviewProcess() {
             href="/pdfs/reviewed-welding-doc.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline hover:text-blue-400"
+            className="group inline-flex items-center gap-2 underline hover:text-blue-400 transition"
           >
-            Source for reviewed welding documents (NASA standard review process)
+            <FileText className="w-4 h-4 text-blue-400" />
+            NASA Public Record
+            <span className="text-slate-400 group-hover:text-blue-400">↗</span>
           </a>
         </p>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {/* WPS Review */}
+          {/* ================= WPS REVIEW ================= */}
           <div className="text-center">
             <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
               <FileSearch className="w-8 h-8" />
             </div>
             <h3 className="text-xl mb-4">WPS Review</h3>
-            <ul className="text-slate-300 space-y-2">
-              <li>
-                <a
-                  href="/pdfs/wps-markup.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-blue-400"
-                >
-                  • WPS Document Markup
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/pdfs/wps-review.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-blue-400"
-                >
-                  • WPS Document Review
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/docs/suggested-wps-addendum.docx"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-blue-400"
-                >
-                  • WPS Addenda Recommendation
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/pdfs/wps-pqr-summary.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-blue-400"
-                >
-                  • Comprehensive Summary
-                </a>
-              </li>
+
+            <ul className="text-slate-300 space-y-1">
+              <DocumentLink
+                href="/pdfs/wps-markup.pdf"
+                icon={<FileText />}
+                label="WPS Document Markup"
+                type="PDF"
+              />
+
+              <DocumentLink
+                href="/pdfs/wps-review.pdf"
+                icon={<FileText />}
+                label="WPS Document Review"
+                type="PDF"
+              />
+
+              <DocumentLink
+                href="/docs/suggested-wps-addendum.docx"
+                icon={<FileEdit />}
+                label="WPS Addenda Recommendation"
+                type="Word"
+              />
+
+              <DocumentLink
+                href="/pdfs/wps-pqr-summary.pdf"
+                icon={<FileText />}
+                label="Comprehensive Summary"
+                type="PDF"
+              />
             </ul>
           </div>
 
-          {/* PQR Review */}
+          {/* ================= PQR REVIEW ================= */}
           <div className="text-center">
             <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
               <CheckCircle className="w-8 h-8" />
             </div>
             <h3 className="text-xl mb-4">PQR Review</h3>
-            <ul className="text-slate-300 space-y-2">
-              <li>
-                <a
-                  href="/pdfs/pqr-markup.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-blue-400"
-                >
-                  • PQR Document Markup
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/pdfs/pqr-review.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-blue-400"
-                >
-                  • PQR Document Review
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/docs/suggested-pqr-addendum.docx"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-blue-400"
-                >
-                  • PQR Addenda/Correction Recommendation
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/pdfs/wps-pqr-summary.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-blue-400"
-                >
-                  • Comprehensive Summary
-                </a>
-              </li>
+
+            <ul className="text-slate-300 space-y-1">
+              <DocumentLink
+                href="/pdfs/pqr-markup.pdf"
+                icon={<FileText />}
+                label="PQR Document Markup"
+                type="PDF"
+              />
+
+              <DocumentLink
+                href="/pdfs/pqr-review.pdf"
+                icon={<FileText />}
+                label="PQR Document Review"
+                type="PDF"
+              />
+
+              <DocumentLink
+                href="/docs/suggested-pqr-addendum.docx"
+                icon={<FileEdit />}
+                label="PQR Addenda / Correction Recommendation"
+                type="Word"
+              />
+
+              <DocumentLink
+                href="/pdfs/wps-pqr-summary.pdf"
+                icon={<FileText />}
+                label="Comprehensive Summary"
+                type="PDF"
+              />
             </ul>
           </div>
 
-          {/* Deliverables */}
+          {/* ================= DELIVERABLES ================= */}
           <div className="text-center">
             <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
               <FileEdit className="w-8 h-8" />
@@ -137,5 +120,46 @@ export function ReviewProcess() {
         </div>
       </div>
     </section>
+  );
+}
+
+/* ======================================================
+   Reusable Document Link Component
+====================================================== */
+
+function DocumentLink({
+  href,
+  icon,
+  label,
+  type,
+}: {
+  href: string;
+  icon: React.ReactNode;
+  label: string;
+  type: 'PDF' | 'Word';
+}) {
+  return (
+    <li>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group flex items-center justify-between gap-3 rounded-md px-3 py-2
+                   transition cursor-pointer
+                   hover:bg-slate-800 hover:text-blue-400"
+      >
+        <div className="flex items-center gap-3">
+          <span className="text-blue-400 w-4 h-4 shrink-0">
+            {icon}
+          </span>
+          <span>{label}</span>
+        </div>
+
+        <div className="flex items-center gap-2 text-xs text-slate-500 group-hover:text-blue-400 transition">
+          <span>{type}</span>
+          <span>↗</span>
+        </div>
+      </a>
+    </li>
   );
 }
