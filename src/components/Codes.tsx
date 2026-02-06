@@ -31,7 +31,7 @@ export function Codes() {
             Welding procedures are evaluated against applicable industry codes, standards, and project-specific requirements
             to ensure full compliance. WPS Services applies a thorough, code-driven approach when reviewing documentation,
             verifying that essential, supplementary essential, and non-essential variables, applicable limitations,
-            and supporting data align with governing standards and referenced documents.
+            and supporting data comply with governing standards and referenced documents.
           </p>
         </div>
         
